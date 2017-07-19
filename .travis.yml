@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - 7
+env:
+  - MY_VAR=
+  - NODE_ENV=TEST
+after_script: 'cat ./coverage/lcov.info | coveralls'
+notifications:
+  email: false
+before_install:
+  - npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+deploy:
+  provider: npm
+  email: npmjs@djanta.io
+  api_key:
+    secure:
+  on:
+    tags: true
+    repo: djantaio/djantajs-compiler-rc
+    all_branches: false
+    node: 7
