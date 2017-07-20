@@ -34,9 +34,6 @@
     "node": ">=6.0.0"
   },
   "main": "./index.js",
-  "scripts": {
-    "test": "./node_modules/.bin/mocha ./test --reporter spec --recursive --timeout 3000 --inspect --use_strict --expose-gc --colors"
-  },
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.0",
