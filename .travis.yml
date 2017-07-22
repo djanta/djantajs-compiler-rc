@@ -1,10 +1,8 @@
 language: node_js
 node_js:
-- 7
+  - 7
 env:
   matrix:
-  - MY_VAR=
-  - NODE_ENV=TEST
   global:
     secure: miSgclcdpfB9XiRRcsGKehe1dNcDGWP9tLswBRzsa9GNhb8HHNgZ+5vzEi8pn65Q2PgRq2PAdzdddnT+KAwdviRJ6z5EtRlwY7/1jCSYLxiGaqQWy8MPlajTfFlimkro8deYJNlc0ZketnzxFQKJVJ8XnjvvJMBE8aw54sJ0YbnLfmOToCz19/J0FxkttpD9JOv8DpYXRheJzj78xwl5KZyt0CBwvekKv3EfjQciWi75R7h+M2KAQiRgZx7yh3sp1IkDcbtvv1HdvpMyl133mzqVCET43nEhgnGgrQrNQI4/fPeCQbOSkxw5LZvvsrN1PagE720VIWsNk5yqKracMGkg6kTW4oeAXTwTPYcdFem1v2/CWoCv/hyfYWrYWBReVsEqv+JSI3PkletPxfkPVPc0jyS3D5x0d8LcQHjrKGh7MceYy8Mr1Hxgg18uGfGrWeGLibW02jBUTaIUv14RtXkKUFT0h4V+kmoK7Ltvn0z4S8KOblrSI38HfJhvjRPhvuHuG8P5d3N7uICWOB4JwXtVN3izXWVEYq6OUiJp0zlU/xh6c+cmXksmev/GjGr7Mm8kVHyAkT4HxqZJ/465JcPBUl7dP4KwGFWOykzRdFiyT9uC/KM6uvjE6Zd59vMvrDfXdVDIk4HAMqXi0N3szAMBN+g7WDHL7NUAI/ojNns=
 notifications:

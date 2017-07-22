@@ -1,6 +1,6 @@
 {
   "name": "djantajs-compiler-rc",
-  "description": "djanta.io initiative that help developer for auto generate the platform dependent .djanta-rc.json",
+  "description": "djanta.io initiative that provide the runtime annotion for .djanta-rc.json generator",
   "version": "0.0.0",
   "homepage": "https://github.com/djanta.io/djantajs-tools-annotation",
   "author": {
@@ -11,29 +11,26 @@
   "keywords": [
     "djanta.io",
     "djanta",
+    "djantajs",
     "annotation",
-    "controller",
-    "es6",
-    "es2015",
-    "es7"
+    ".djanta.rc"
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com/djanta.io/djantajs-tools-annotations.git"
+    "url": "git@github.com/djanta.io/djantajs-compiler-rc.git"
   },
   "bugs": {
-    "url": "https://github.com/djanta.io/djantajs-tools-annotations/issues"
+    "url": "https://github.com/djanta.io/djantajs-compiler-rc/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/djanta.io/djantajs-tools-annotations/blob/master/LICENSE"
+      "url": "https://github.com/djanta.io/djantajs-compiler-rc/blob/master/LICENSE"
     }
   ],
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=7.0.0"
   },
-  "main": "./index.js",
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.0",
@@ -43,6 +40,7 @@
     "lodash": "^4.17.4",
     "path-to-regexp": "^1.7.0",
     "semver": "^5.3.0",
+    "string": "^3.3.3",
     "url-pattern": "^1.0.3"
   },
   "devDependencies": {

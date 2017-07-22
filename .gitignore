@@ -1,6 +1,3 @@
 node_modules
 npm-debug.log
-tmp
-my-*.js
-sample.txt
-.djanta-rc.json
+package-lock.json
