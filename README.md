@@ -32,9 +32,6 @@ let rc = require('djantajs-compiler-rc');
 
 ```js
 let rc = require('djantajs-compiler-rc');
-
-// pass a string of javascript, CSS, LESS etc
-rc(string);
 ```
 
 ## Table of contents
