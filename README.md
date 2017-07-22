@@ -294,7 +294,7 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 1. First things first, please make sure to run `npm cache clear`, then do `npm i djantajs-compiler-rc --save[-dev]`. If that doesn't clear things up, try #2.
 2. Create [an issue](https://github.com/djantaio/djantajs-compiler-rc/issues). We'd love to help, so please be sure to provide as much detail as possible, including:
 
-* version of verb and djantajs-compiler-rc
+* version of djantajs-compiler-rc
 * platform
 * any error messages or other information that might be useful.
 
