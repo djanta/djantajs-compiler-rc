@@ -1,11 +1,5 @@
-# djantajs-compiler-rc
-
-[![Gitter][gitter-image]][gitter-url]
-[![NPM version][npm-image]][npm-url]
-[![Linux + OSX Build Status][ci-image]][ci-url]
-[![Windows Build Status][appveyor-image]][appveyor-url]
-[![Test Coverage][coverage-image]][coverage-url]
-[![Follow @djantaio on Twitter][twitter-image]][twitter-url]
+# djantajs-compiler-rc [![NPM version](https://badge.fury.io/js/djantajs-compiler-rc.svg)](http://badge.fury.io/js/djantajs-compiler-rc)  
+[![Build Status](https://travis-ci.org/djanta.io/djantajs-compiler-rc.svg)](https://travis-ci.org/djanta.io/djantajs-compiler-rc)
 
 > Uses djantajs runtime compiler to extract all the framework know provided annotation from your code and then generate the plateform .djanta-rc.json configuration.
 
