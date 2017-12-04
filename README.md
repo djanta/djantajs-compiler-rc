@@ -50,29 +50,26 @@ let rc = require('djantajs-compiler-rc');
 * [License](#license)
 
 
-## The "@bundle" annotation
+## TL;TR
+
+## Annotation "@bundle" vs "Packags.json"
 
 ### Overview
 In your project's Gruntfile, add a section named `bundlerc` to the data object passed into `grunt.initConfig()`.
 
 ```js
-grunt.initConfig({
-  bundlerc: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
-});
+@bundle();
 ```
+
+### Retention
+
+#### class
 
 ### Options
 
-#### options.separator
+#### name
 Type: `String`
-Default value: `',  '`
+Default value: `${package.name}`
 
 A string value that is used to do something with whatever.
 
@@ -88,14 +85,9 @@ A string value that is used to do something else with whatever else.
 In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
 
 ```js
-grunt.initConfig({
-  bundlerc: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
+@bundle(
+  name: 'MyCareManagmentProject'
+);
 ```
 
 #### Custom Options
@@ -115,7 +107,7 @@ grunt.initConfig({
 });
 ```
 
-## The "@plugin" annotation
+## Annotation @plugin aka "Service"
 
 ### Overview
 In your project's Gruntfile, add a section named `bundlerc` to the data object passed into `grunt.initConfig()`.
@@ -139,6 +131,7 @@ const Runtime = require ('djantajs-infinite-runtime');
  * )
  */
 module.exports = class CarRentalService extends Runtime.AbstractPlugin {
+    
     /**
      * Qualified default explicit constructor declaration
      */
@@ -195,70 +188,11 @@ grunt.initConfig({
 });
 ```
 
-## The "@resource" annotation
+## The "@controller" annotation
 
 ### Overview
 In your project's Gruntfile, add a section named `bundlerc` to the data object passed into `grunt.initConfig()`.
 
-```js
-grunt.initConfig({
-  bundlerc: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
-});
-```
-
-### Options
-
-#### options.separator
-Type: `String`
-Default value: `',  '`
-
-A string value that is used to do something with whatever.
-
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
-
-### Usage Examples
-
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
-```js
-grunt.initConfig({
-  bundlerc: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  bundlerc: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
 
 ## Related projects
 
@@ -298,6 +232,20 @@ _(Nothing yet)_
 
 * [github/djantaio](https://github.com/djantaio)
 * [twitter/djantaio](http://twitter.com/djantaio)
+
+## Roadmap
+
+- Collections
+ - [x] each
+ - [x] eachSeries
+ - [ ] map
+- Control Flow
+ - [x] series
+ - [x] parallel
+ - [x] waterfall
+ - [ ] retry
+ - [x] times
+ - [x] timesSeries
 
 ## License
 

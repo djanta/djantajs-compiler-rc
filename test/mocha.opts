@@ -1,0 +1,9 @@
+./test/**/*.js
+--reporter spec
+--timeout 120000
+--no-exit
+--recursive
+--full-trace
+--slow 250
+--check-leaks
+--globals app

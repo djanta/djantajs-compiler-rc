@@ -1,0 +1,13 @@
+{
+  "name": "my-example-controller",
+  "description": "djanta.io initiative that help developer for auto generate the platform dependent .djanta-rc.json",
+  "version": "1.0.0",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "url-pattern": "^1.0.3"
+  },
+  "keywords": [
+    "djanta.io",
+    "controller"
+  ]
+}
