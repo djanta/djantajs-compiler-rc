@@ -1,11 +1,11 @@
 # djantajs-compiler-rc [![NPM version](https://badge.fury.io/js/djantajs-compiler-rc.svg)](http://badge.fury.io/js/djantajs-compiler-rc) [![Build Status](https://travis-ci.org/djantaio/djantajs-compiler-rc.svg)](https://travis-ci.org/djantaio/djantajs-compiler-rc)
 
-> Uses djantajs runtime compiler to extract all the framework know provided annotation from your code and then generate the plateform .djanta-rc.json configuration.
+> Uses djantajs runtime compiler to extract all the framework which provides annotation from your code and then generates the .djanta-rc.json platform configuration.
 
 ## Getting Started
 This version of the module requires at least npm `>=4.6.0` and node `>=7.0.0`
 
-If you haven't used [npm](https://npmjs.com/) before, be sure to check out the [Getting Started](https://docs.npmjs.com/getting-started/what-is-npm) guide. Once you're familiar with that process, you may install this module with this command:
+For more information or getting better familiar with [npm](https://npmjs.com/) please click the link, or click this link to get started [Getting Started](https://docs.npmjs.com/getting-started/what-is-npm) guide. Once you're familiar with that process, you may install this module with this command:
 
 ## Install
 
@@ -115,7 +115,7 @@ In your project's Gruntfile, add a section named `bundlerc` to the data object p
 ```js
 const Runtime = require ('djantajs-infinite-runtime');
 /**
- * So far, the plugin annotation might take place you class definition level as follow:
+ * At this point, the plugin annotation might look something like this in your class definition level:
  * @plugin(
  *  name="CarRentalService",
  *  version="1.0.1",
