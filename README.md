@@ -113,7 +113,7 @@ grunt.initConfig({
 In your project's Gruntfile, add a section named `bundlerc` to the data object passed into `grunt.initConfig()`.
 
 ```js
-const Runtime = require ('djantajs-infinite-runtime');
+const Runtime = require ('djantajs-runtime');
 /**
  * So far, the plugin annotation might take place you class definition level as follow:
  * @plugin(
@@ -203,7 +203,7 @@ In your project's Gruntfile, add a section named `bundlerc` to the data object p
 
 ## Why use djantajs-compiler-rc?
 
-It's magical and make the server to boot less than and 5 second instead or minutes. If that's not enough for you, it's also the most powerful and easy-to-use .djanta-rc.json generator for djantajs-infinite-runtime. And it's magical.
+It's magical and make the server to boot less than and 5 second instead or minutes. If that's not enough for you, it's also the most powerful and easy-to-use .djanta-rc.json generator for djantajs-runtime. And it's magical.
 
 ## Running tests
 
