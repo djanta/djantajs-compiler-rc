@@ -1,31 +1,6 @@
 # djantajs-compiler-rc [![NPM version](https://badge.fury.io/js/djantajs-compiler-rc.svg)](http://badge.fury.io/js/djantajs-compiler-rc) [![Build Status](https://travis-ci.org/djantaio/djantajs-compiler-rc.svg)](https://travis-ci.org/djantaio/djantajs-compiler-rc)
 
-> Uses djantajs runtime compiler to extract all the framework know provided annotation from your code and then generate the plateform .djanta-rc.json configuration.
-
-## Getting Started
-This version of the module requires at least npm `>=4.6.0` and node `>=7.0.0`
-
-If you haven't used [npm](https://npmjs.com/) before, be sure to check out the [Getting Started](https://docs.npmjs.com/getting-started/what-is-npm) guide. Once you're familiar with that process, you may install this module with this command:
-
-## Install
-
-Install with [npm](https://www.npmjs.com/):
-
-```shell
-npm i djantajs-compiler-rc --save[-dev]
-```
-
-Once this module has been sucessfully installed, it may be enabled and ready to be used inside your project with this line of JavaScript:
-
-```js
-let rc = require('djantajs-compiler-rc');
-```
-
-## Usage
-
-```js
-let rc = require('djantajs-compiler-rc');
-```
+> Uses djantajs runtime compiler that extract all known annotation from your code and then generate the .djanta-rc.json configuration.
 
 ## Table of contents
 
@@ -41,7 +16,7 @@ let rc = require('djantajs-compiler-rc');
   - [](#-watch--indexjs-l180-)[.watch](index.js#L180)
 
 * [Related projects](#related-projects)
-* [Why use runtim annotation?](#why-use-djantajs-compiler-rc-)
+* [Why use runtime annotation?](#why-use-djantajs-compiler-rc-)
 * [Running tests](#running-tests)
 * [Contributing](#contributing)
 * [Troubleshooting](#troubleshooting)
@@ -49,6 +24,36 @@ let rc = require('djantajs-compiler-rc');
 * [Author](#author)
 * [License](#license)
 
+## Getting Started
+This version of the module requires at least npm `>=4.6.0` and node `>=7.0.0`
+
+If you haven't used [npm](https://npmjs.com/) before, be sure to check out the [Getting Started](https://docs.npmjs.com/getting-started/what-is-npm) guide. Once you're familiar with that process, you may install this module with this command:
+
+## Install
+
+Install with [npm](https://www.npmjs.com/):
+
+```shell
+npm i djantajs-compiler-rc --save-dev
+```
+
+Once you install the compiler, you might also want the `.djanta-rc.json` to bo automatically generatated. Therefore, we've provided our `Grunt` task which you'll be able to install as follow.
+
+```shell
+npm i grunt-djantajs-compiler --save-dev
+```
+
+The `Grunt` task configuration is at available at: [](https://github.com/djanta/grunt-djantajs-compiler/blob/master/README.md)
+
+<b>However, as to day, the `Gulp` task generator is coming soon ...</b>
+
+## Usage
+
+Once this module has been sucessfully installed, it may be enabled and ready to be used inside your project with this line of JavaScript:
+
+```js
+let rc = require('djantajs-compiler-rc');
+```
 
 ## TL;TR
 
@@ -85,9 +90,7 @@ A string value that is used to do something else with whatever else.
 In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
 
 ```js
-@bundle(
-  name: 'MyCareManagmentProject'
-);
+@bundle(name: 'MyCareManagmentProject')
 ```
 
 #### Custom Options
@@ -113,7 +116,8 @@ grunt.initConfig({
 In your project's Gruntfile, add a section named `bundlerc` to the data object passed into `grunt.initConfig()`.
 
 ```js
-const Runtime = require ('djantajs-runtime');
+const {Plugin} = require ('djantajs-runtime');
+
 /**
  * So far, the plugin annotation might take place you class definition level as follow:
  * @plugin(
@@ -126,11 +130,10 @@ const Runtime = require ('djantajs-runtime');
  *      {name: "searchEngineManager"},
  *      {name:"quotes" description:'Here\'s where any other tiers provider can join me and offer their quotation service'}
  *  ],
- *  singleton=true,
  *  description="This's how you can fully configure our service to enrich and enhance you ecosytem"
  * )
  */
-module.exports = class CarRentalService extends Runtime.AbstractPlugin {
+module.exports = class CarRentalService extends Plugin {
     
     /**
      * Qualified default explicit constructor declaration
@@ -228,7 +231,7 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 ## Release History
 _(Nothing yet)_
 
-**Stanislas Koffi ASSOUTOVI**
+**KOFFI ASSOUTOVI**
 
 * [github/djantaio](https://github.com/djantaio)
 * [twitter/djantaio](http://twitter.com/djantaio)
@@ -249,5 +252,6 @@ _(Nothing yet)_
 
 ## License
 
-Copyright © 2015-2017 [Stanislas Koffi ASSOUTOVI](https://github.com/djantaio)
+Copyright © 2015-2017 [Stanislas ASSOUTOVI](https://github.com/stanislaska)
+
 Released under the MIT license.
