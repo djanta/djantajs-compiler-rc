@@ -9,8 +9,6 @@
   <div>
     <img width="100" height="100" title="djantaJS" src="./assets/images/logo.svg">
   </div>
-  <h1>HTML Webpack Plugin</h1>
-  <p>Plugin that simplifies creation of HTML files to serve your bundles</p>
 </div>
 
 
