@@ -34,7 +34,7 @@ It's magical and make the server to boot less than a couple of seconds instead o
 
 ## Getting Started
 
-This version of the module requires at least npm `>=4.6.0` and node `>=7.0.0`
+This version of the module requires at least npm `>=4.6.0` and node `>=6.0.0`
 
 If you haven't used [npm](https://npmjs.com/) before, be sure to check out the [Getting Started](https://docs.npmjs.com/getting-started/what-is-npm) guide. Once you're familiar with that process, you may install this module with this command:
 
@@ -113,6 +113,21 @@ A boolean value that you can set to `false`to exclude the all bundle to be scane
 
 A boolean value that you can set to `false`to exclude the all bundle to be scaned at build time or to be deploy at runtime. If unspecified, the default value is set to `true`
 
+#### imports
+**Type:** `Array` <br/>
+**Default value:** `` <br/>
+**Required:** `false`
+
+An array value to list which other bundle(s) this bundle depends on.
+
+#### tags
+**Type:** `Array` <br/>
+**Default value:** `` <br/>
+**Required:** `false`
+
+An array of short tag list which fit well your bundle.
+
+
 ### Usage Examples
 
 ```js
@@ -142,56 +157,162 @@ module.exports = class MyCustomizedBundle {
 }
 ```
 
-
-## Annotation @plugin aka "Service"
+## Annotation @plugin aka "service"
 
 ### Overview
-In your project's Gruntfile, add a section named `bundlerc` to the data object passed into `grunt.initConfig()`.
+
+The following annotation called `plugin` represent one of the most important, powerful and the most used annotation we've ever provided. 
+Therefore, this'S basically the annotion you'll be uising to describe each service provided by your `djantajs` contribution.
+
+```js
+@plugin
+```
+
+### Retention
+
+The plugin annotation has been provided as class retention level.
+
+### Expected instance properties (Options)
+
+#### name
+**Type:** `String` <br/>
+**Default value:** ` ` <br/>
+**Required:** `true`
+
+A litteral string value that'll be use to lookup for your service implementation across the platform. Basically this value should be consider as uniq key.
+
+#### version
+**Type:** `String` <br/>
+**Default value:** `1.0.0` <br/>
+**Required:** `false`
+
+A string value that'll to define the latest version of your service. This has been instroduced as a helper to handle the service versioning or upgrade. This'll be useful to ensure your service migration.
+However, this version must follow the sementic versioning taxinomy: `<major>.<minor>.<patch>`
+
+#### imports
+**Type:** `Array` <br/>
+**Default value:** ` ` <br/>
+**Required:** `false`
+
+An array value to list which other service this service is pending on.
+
+#### tags
+**Type:** `Array` <br/>
+**Default value:** ` ` <br/>
+**Required:** `false`
+
+An array of tag list to shortly describe the service purpose.
+
+#### portes
+**Type:** `Array` <br/>
+**Default value:** ` ` <br/>
+**Required:** `false`
+
+An array of porte where any 3rd party can enrich your service at.
+
+#### description
+**Type:** `String` <br/>
+**Default value:** ` ` <br/>
+**Required:** `true`
+
+A litteral string value that'll be use to lookup for your service implementation across the platform. Basically this value should be consider as uniq key.
+
+#### author
+**Type:** `String` <br/>
+**Default value:** ` ` <br/>
+**Required:** `true`
+
+A litteral string value that'll be use to lookup for your service implementation across the platform. Basically this value should be consider as uniq key.
+
+#### settings
+**Type:** `Array` <br/>
+**Default value:** ` ` <br/>
+**Required:** `false`
+
+An array of tag list to shortly describe the service purpose.
+
+### Usage Examples
 
 ```js
 const {Plugin} = require ('djantajs-runtime');
 
 /**
  * So far, the plugin annotation might take place you class definition level as follow:
- * @plugin(
- *  name="CarRentalService",
- *  version="1.0.1",
- *  engine=[">=7.6.0"],
+ * @plugin(name="CarRentalService", version="1.0.1", engine=[">=7.6.0"],
  *  imports=["MyTiersBillingService", "MyS3BillStorageService@>=0.2.8"],
  *  tags=["finance", "trading", "accounting", "payment"],
- *  portes=[
- *      {name: "searchEngineManager"},
- *      {name:"quotes" description:'Here\'s where any other tiers provider can join me and offer their quotation service'}
+ *  portes=[@porte(name='searchEngineManager', enabled=true, description='Qualified extension where anyone can contribute their car search engine'),
+ *    @porte(name='quotes', enabled=true, description='Qualified extension where any outsider can contribute their pricing service')
  *  ],
- *  description="This's how you can fully configure our service to enrich and enhance you ecosytem"
+ *  description="This's how you can provide your service to enrich the ecosytem",
+ *  authors=["DJANTA, LLC"],
+ *  settings=[@setting(name='my-setting-identifier', value=#{any value goes here}, description='Each setting description here!')]
  * )
  */
 module.exports = class CarRentalService extends Plugin {
     
-    /**
-     * Qualified default explicit constructor declaration
-     */
-    constructor () {
-        super ({name: 'CarRentalService'});
-    }
+  /**
+   * Qualified default explicit constructor declaration
+   */
+  constructor () {
+    super ();
+  }
+  
+  /**
+   * Runtime invocable lifecycle ....
+   */
+  init (options = {}) {
+    super.init(options);
+    //Here i can do anything i want to initialize my plugin
+  }
 };
 ```
 
-### Options
+### Result @ `.djanta-rc.json`
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
-
-A string value that is used to do something with whatever.
-
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
-
-### Usage Examples
+```json
+{
+"plugins": [
+    {
+      "name": "CarRentalService",
+      "enabled": true,
+      "version": "1.0.1",
+      "order": -1,
+      "engine": [
+        ">=7.6.0"
+      ],
+      "tags": [
+        "finance",
+        "trading",
+        "accounting",
+        "payment"
+      ],
+      "imports": ["MyS3BillStorageService@>=0.2.8", "MyTiersBillingService"],
+      "portes": [
+        {
+          "name": "searchEngineManager",
+          "enabled": true,
+          "description": "Qualified extension where anyone can contribute their car search engine"
+        },
+        {
+          "name": "quotes",
+          "enabled": true,
+          "description": "Qualified extension where any outsider can contribute their pricing service"
+        }
+      ],
+      "settings": [
+        {
+          "name": "my-setting-identifier",
+          "value": "#{any value goes here}",
+          "description": "Each setting description here!"
+        }
+      ],
+      "description": "This's how you can provide your service to enrich the ecosytem",
+      "class": "services/cars-rental-service.js"
+    }
+  ],
+}
+```
 
 
 ## The "@controller" annotation
@@ -233,6 +354,6 @@ _(Nothing yet)_
 
 ## License
 
-Copyright © 2015-2017 [Stanislas ASSOUTOVI](https://github.com/stanislaska)
+Copyright © 2015-2018 [DJANTA, LLC](https://github.com/djanta/djantajs-compiler-rc/blob/master/LICENSE)
 
 Released under the MIT license.
