@@ -314,6 +314,158 @@ module.exports = class CarRentalService extends Plugin {
 }
 ```
 
+## Annotation @porte
+
+### Overview
+
+This annotion must be used in conjugaison with the `@plugin` annotation to define the specified porte e.g **`contribution point`** provided by the current plugin.
+
+```js
+@porte
+```
+
+### Retention
+
+The porte annotation has been provided as class retention level.
+
+### Expected instance properties (Options)
+
+#### name
+**Type:** `String` <br/>
+**Default value:** ` ` <br/>
+**Required:** `true`
+
+A litteral string value to define the porte name. Note the prote given name mnust be uniq per service.
+
+#### enable
+**Type:** `Boolean` <br/>
+**Default value:** `true` <br/>
+**Required:** `false`
+
+A boolean value to enable or desable the porte accessibility. This value can just be set to `false` to desable the porte provisioning.
+
+#### description
+**Type:** `String` <br/>
+**Default value:** ` ` <br/>
+**Required:** `false`
+
+A litteral string value to describle the given porte usage and goal. This'll be useful to other developers the purpose of the current porte.
+
+### Usage Examples
+
+```js
+const {Plugin} = require ('djantajs-runtime');
+
+/**
+ * So far, the plugin annotation might take place you class definition level as follow:
+ * @plugin(name="MyPorteDemoService", version="1.0.1", engine=[">=7.6.0"],
+ *  portes=[@porte(name='my-feature-porte', enabled=true, description='Anyone can now contribute to my service through this porte')
+ *  ]
+ * )
+ */
+module.exports = class MyPorteDemoServiceClass extends Plugin {}
+```
+
+### Result @ `.djanta-rc.json`
+
+```json
+{
+  "plugins": [
+    {
+      "name": "MyPorteDemoService",
+      "enabled": true,
+      "version": "1.0.1",
+      "order": -1,
+      "engine": [
+        ">=7.6.0"
+      ],
+      "portes": [
+        {
+          "name": "my-feature-porte",
+          "enabled": true,
+          "description": "Anyone can now contribute to my service through this porte"
+        }
+      ]
+    }
+  ],
+}
+```
+
+## Annotation @setting
+
+### Overview
+
+This annotion must be used in conjugaison with the `@plugin` annotation to define the providedplugin **`default configuration`**.
+
+```js
+@setting
+```
+
+### Retention
+
+The porte annotation has been provided as class retention level.
+
+### Expected instance properties (Options)
+
+#### name
+**Type:** `String` <br/>
+**Default value:** ` ` <br/>
+**Required:** `true`
+
+A litteral string value to define the setting mapping name.
+
+#### description
+**Type:** `String` <br/>
+**Default value:** ` ` <br/>
+**Required:** `false`
+
+A litteral string value to describle the given setting usage and goal. This'll be useful to other developers the purpose of the current porte.
+
+#### value
+**Type:** `#Any` <br/>
+**Default value:** ` ` <br/>
+**Required:** `true`
+
+Any data type you'd like to map with the given name.
+
+### Usage Examples
+
+```js
+const {Plugin} = require ('djantajs-runtime');
+
+/**
+ * So far, the plugin annotation might take place you class definition level as follow:
+ * @plugin(name="MyPorteDemoService", version="1.0.1", engine=[">=7.6.0"],
+ *  settings=[@setting(name='my-setting-identifier', value=#{any value goes here}, description='Each setting description here!')]
+ * )
+ */
+module.exports = class MySettingDemoServiceClass extends Plugin {}
+```
+
+### Result @ `.djanta-rc.json`
+
+```json
+{
+  "plugins": [
+    {
+      "name": "MyPorteDemoService",
+      "enabled": true,
+      "version": "1.0.1",
+      "order": -1,
+      "engine": [
+        ">=7.6.0"
+      ],
+      "settings": [
+        {
+          "name": "my-setting-identifier",
+          "value": "#{any value goes here}",
+          "description": "Each setting description here!"
+        }
+      ]
+    }
+  ],
+}
+```
 
 ## The "@controller" annotation
 
