@@ -1,20 +1,26 @@
-# djantajs-compiler-rc [![NPM version](https://badge.fury.io/js/djantajs-compiler-rc.svg)](http://badge.fury.io/js/djantajs-compiler-rc) [![Build Status](https://travis-ci.org/djantaio/djantajs-compiler-rc.svg)](https://travis-ci.org/djantaio/djantajs-compiler-rc)
+# djantajs-compiler-rc
+
+[![NPM version](https://badge.fury.io/js/djantajs-compiler-rc.svg)](http://badge.fury.io/js/djantajs-compiler-rc)
+[![Build Status](https://travis-ci.org/djantaio/djantajs-compiler-rc.svg)](https://travis-ci.org/djantaio/djantajs-compiler-rc)
 
 > Uses djantajs runtime compiler that extract all known annotation from your code and then generate the .djanta-rc.json configuration.
 
+<div align="center">
+  <div>
+    <img width="100" height="100" title="djantaJS" src="./assets/images/logo.svg">
+  </div>
+  <h1>HTML Webpack Plugin</h1>
+  <p>Plugin that simplifies creation of HTML files to serve your bundles</p>
+</div>
+
+
 ## Table of contents
 
-* [Features](#features)
-* [CLI](#cli)
-* [API](#api)
-  - [Template API](#template-api)
-  - [Config API](#config-api)
-  - [Data API](#data-api)
-  - [Middleware API](#middleware-api)
-  - [Task API](#task-api)
-  - [](#-task--indexjs-l114-)[.task](index.js#L114)
-  - [](#-watch--indexjs-l180-)[.watch](index.js#L180)
-
+* [Dependencies](#dependencies)
+* [Prerequisites](#Prerequisites)
+* [Services](#services)
+  - [Http Service](#webappservice)
+    - [Portes](#portes)
 * [Related projects](#related-projects)
 * [Why use runtime annotation?](#why-use-djantajs-compiler-rc-)
 * [Running tests](#running-tests)
@@ -24,7 +30,12 @@
 * [Author](#author)
 * [License](#license)
 
+## Why use djantajs-compiler-rc?
+
+It's magical and make the server to boot less than a couple of seconds instead or minutes. Therefore, by using the framework provided annotation, this module will be able to parse them all generate our project `.djanta-rc.json` at build lifecycle. If that's not enough for you, it's also the most powerful and easy-to-use. And it's magical.
+
 ## Getting Started
+
 This version of the module requires at least npm `>=4.6.0` and node `>=7.0.0`
 
 If you haven't used [npm](https://npmjs.com/) before, be sure to check out the [Getting Started](https://docs.npmjs.com/getting-started/what-is-npm) guide. Once you're familiar with that process, you may install this module with this command:
@@ -37,78 +48,102 @@ Install with [npm](https://www.npmjs.com/):
 npm i djantajs-compiler-rc --save-dev
 ```
 
-Once you install the compiler, you might also want the `.djanta-rc.json` to bo automatically generatated. Therefore, we've provided our `Grunt` task which you'll be able to install as follow.
+Once you install the compiler, you might also want the `.djanta-rc.json` to be automatically generatated. Therefore, we've provided the `Grunt` task which you can install as follow:
 
 ```shell
 npm i grunt-djantajs-compiler --save-dev
 ```
 
-The `Grunt` task configuration is at available at: [](https://github.com/djanta/grunt-djantajs-compiler/blob/master/README.md)
+The `Grunt` task configuration is available at: [](https://github.com/djanta/grunt-djantajs-compiler/blob/master/README.md)
 
 <b>However, as to day, the `Gulp` task generator is coming soon ...</b>
 
 ## Usage
 
-Once this module has been sucessfully installed, it may be enabled and ready to be used inside your project with this line of JavaScript:
+Once this module has been sucessfully installed and well configured, it may be enabled and ready to be used inside your project with this line of JavaScript:
 
 ```js
-let rc = require('djantajs-compiler-rc');
+let {Handler, ModuleBase} = require('djantajs-compiler-rc');
 ```
 
 ## TL;TR
 
-## Annotation "@bundle" vs "Packags.json"
+In the following sections, we'll learn how to deploy the core platform provided annotions to describe your **`djantaJS`** compliant application. 
+
+## Annotation "@bundle" vs "packags.json"
 
 ### Overview
+
 In your project's Gruntfile, add a section named `bundlerc` to the data object passed into `grunt.initConfig()`.
 
 ```js
-@bundle();
+@bundle
 ```
 
 ### Retention
 
-#### class
+The bundle annotation has been provided and will only be declared with class level retention.
 
-### Options
+### Expected instance properties (Options)
 
 #### name
-Type: `String`
-Default value: `${package.name}`
+**Type:** `String` <br/>
+**Default value:** `${package.name}` <br/>
+**Required:** `false`
 
-A string value that is used to do something with whatever.
+A litteral string value which can better introduce your bundle name. By default, the **`npm`** manifest name will be used instead.
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+#### version
+**Type:** `String` <br/>
+**Default value:** `${package.version}` <br/>
+**Required:** `false`
 
-A string value that is used to do something else with whatever else.
+A string value that'll to define the latest version of your bundle. This has been instroduced due of some reasons when certains application 
+like to diverge their functional version from the technical version i.e: `package.json`. However, this version must follow the sementic versioning taxinomy: `<major>.<minor>.<patch>` 
+
+#### enabled
+**Type:** `Boolean` <br/>
+**Default value:** `true` <br/>
+**Required:** `false`
+
+A boolean value that you can set to `false`to exclude the all bundle to be scaned at build time or to be deploy at runtime. If unspecified, the default value is set to `true`
+
+#### order
+**Type:** `Number` <br/>
+**Default value:** `1000` <br/>
+**Required:** `false`
+
+A boolean value that you can set to `false`to exclude the all bundle to be scaned at build time or to be deploy at runtime. If unspecified, the default value is set to `true`
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
 ```js
-@bundle(name: 'MyCareManagmentProject')
+/**
+ * @bundle(name: 'MyCustomizedBundleName', version='1.0.1', enabled=true, order=1, 
+ *   tags=['testing', 'documentation'],
+ *   homepage='www.djantajs.io'
+ *   imports=['BundleOne', 'BundleTow', '...'],
+ *   author='DJANTA, LLC'
+ * )
+ */
+module.exports = class MyCustomizedBundle {
+   constructor () {}
+}
+```
+### Result @ `.djanta-rc.json`
+
+```json
+{
+  "package": "my-real-npm-package-name",
+  "name": "MyCustomizedBundleName",
+  "homepage": "www.djantajs.io",
+  "version": "1.0.1",
+  "author": "DJANTA, LLC",
+  "imports": "['BundleOne', 'BundleTow', '...']",
+  "tags": "['testing', 'documentation']"
+}
 ```
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  bundlerc: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
 
 ## Annotation @plugin aka "Service"
 
@@ -160,53 +195,11 @@ A string value that is used to do something else with whatever else.
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
-```js
-grunt.initConfig({
-  bundlerc: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  bundlerc: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
 
 ## The "@controller" annotation
 
 ### Overview
 In your project's Gruntfile, add a section named `bundlerc` to the data object passed into `grunt.initConfig()`.
-
-
-## Related projects
-
-* [assemble](https://www.npmjs.com/package/assemble): Static site generator for Grunt.js, Yeoman and Node.js. Used by Zurb Foundation, Zurb Ink, H5BP/Effeckt,… [more](https://www.npmjs.com/package/assemble) | [homepage](http://assemble.io)
-* [composer](https://www.npmjs.com/package/composer): API-first task runner with three methods: task, run and watch. | [homepage](https://github.com/jonschlinkert/composer)
-* [engine](https://www.npmjs.com/package/engine): Template engine based on Lo-Dash template, but adds features like the ability to register helpers… [more](https://www.npmjs.com/package/engine) | [homepage](https://github.com/jonschlinkert/engine)
-* [template](https://www.npmjs.com/package/template): Render templates using any engine. Supports, layouts, pages, partials and custom template types. Use template… [more](https://www.npmjs.com/package/template) | [homepage](https://github.com/jonschlinkert/template)
-
-## Why use djantajs-compiler-rc?
-
-It's magical and make the server to boot less than and 5 second instead or minutes. If that's not enough for you, it's also the most powerful and easy-to-use .djanta-rc.json generator for djantajs-runtime. And it's magical.
 
 ## Running tests
 
@@ -228,27 +221,17 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 * platform
 * any error messages or other information that might be useful.
 
+### Bad Pratices
+
 ## Release History
 _(Nothing yet)_
 
-**KOFFI ASSOUTOVI**
+**Koffi ASSOUTOVI**
 
 * [github/djantaio](https://github.com/djantaio)
 * [twitter/djantaio](http://twitter.com/djantaio)
 
 ## Roadmap
-
-- Collections
- - [x] each
- - [x] eachSeries
- - [ ] map
-- Control Flow
- - [x] series
- - [x] parallel
- - [x] waterfall
- - [ ] retry
- - [x] times
- - [x] timesSeries
 
 ## License
 
