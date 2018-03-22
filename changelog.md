@@ -1,4 +1,16 @@
 
+* __Incrementing to version 0.1.0__
+
+    [djantaio](mailto:github@djanta.io) - Thu, 22 Mar 2018 09:17:28 -0500
+    
+    
+
+* __0.1.0__
+
+    [djantaio](mailto:github@djanta.io) - Thu, 22 Mar 2018 09:17:19 -0500
+    
+    
+
 * __Incrementing to version 0.0.1__
 
     [djantaio](mailto:github@djanta.io) - Thu, 22 Mar 2018 09:17:08 -0500
