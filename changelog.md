@@ -1,4 +1,16 @@
 
+* __Incrementing to version 0.0.1__
+
+    [djantaio](mailto:github@djanta.io) - Thu, 22 Mar 2018 09:17:08 -0500
+    
+    
+
+* __0.0.1__
+
+    [djantaio](mailto:github@djanta.io) - Thu, 22 Mar 2018 09:16:50 -0500
+    
+    
+
 * __Updading the README read proof__
 
     [stanislaska](mailto:koffi.ass@gmail.com) - Thu, 22 Mar 2018 09:15:12 -0500
