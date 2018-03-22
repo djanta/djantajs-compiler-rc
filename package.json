@@ -1,7 +1,7 @@
 {
   "name": "djantajs-compiler-rc",
   "description": "djanta.io initiative that provide the runtime annotion for .djanta-rc.json generator.",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/djanta/djantajs-compiler-rc",
   "author": {
     "name": "team.dev@djanta.io",
