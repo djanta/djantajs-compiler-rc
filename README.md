@@ -467,6 +467,11 @@ module.exports = class MySettingDemoServiceClass extends Plugin {}
 }
 ```
 
+## The "@contribution" annotation
+
+### Overview
+In your project's Gruntfile, add a section named `bundlerc` to the data object passed into `grunt.initConfig()`.
+
 ## The "@controller" annotation
 
 ### Overview
