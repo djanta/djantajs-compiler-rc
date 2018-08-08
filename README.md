@@ -1,16 +1,16 @@
 # djantajs-compiler-rc
 
-[![NPM version](https://badge.fury.io/js/djantajs-compiler-rc.svg)](http://badge.fury.io/js/djantajs-compiler-rc)
 [![Build Status](https://travis-ci.org/djantaio/djantajs-compiler-rc.svg)](https://travis-ci.org/djantaio/djantajs-compiler-rc)
 
+[![npm](https://img.shields.io/npm/v/djantajs-compiler-rc.svg?style=flat)](https://github.com/djanta/djantajs-compiler-rc)
+[![npm downloads](https://img.shields.io/npm/dw/djantajs-compiler-rc.svg?style=flat)](https://www.npmjs.com/package/djantajs-compiler-rc)
+[![Build Status](https://travis-ci.org/djanta/djantajs-compiler-rc.svg?branch=master)](https://travis-ci.org/djanta/djantajs-compiler-rc)
+[![Coverage Status](https://coveralls.io/repos/github/djanta/djantajs-compiler-rc/badge.svg?branch=master)](https://coveralls.io/github/djanta/djantajs-compiler-rc?branch=master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/312ea725f33a184b0464/maintainability)](https://codeclimate.com/github/djanta/djantajs-compiler-rc/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/312ea725f33a184b0464/test_coverage)](https://codeclimate.com/github/djanta/djantajs-compiler-rc/test_coverage)
+[![Known Vulnerabilities](https://snyk.io/test/github/djanta/djantajs-compiler-rc/badge.svg)](https://snyk.io/test/github/djanta/djantajs-compiler-rc)
+
 > Uses djantajs runtime compiler that extract all known annotation from your code and then generate the .djanta-rc.json configuration.
-
-<div align="center">
-  <div>
-    <img width="100" height="100" title="djantaJS" src="./assets/images/logo.svg">
-  </div>
-</div>
-
 
 ## Table of contents
 
@@ -61,7 +61,7 @@ The `Grunt` task configuration is available at: [](https://github.com/djanta/gru
 Once this module has been sucessfully installed and well configured, it may be enabled and ready to be used inside your project with this line of JavaScript:
 
 ```js
-let {Handler, ModuleBase} = require('djantajs-compiler-rc');
+let { Handler, ModuleBase } = require('djantajs-compiler-rc');
 ```
 
 ## TL;TR
@@ -140,14 +140,19 @@ An array of short tag list which fit well your bundle.
  * )
  */
 module.exports = class MyCustomizedBundle {
+   /**
+    * Qualified default class constructor
+    */
    constructor () {}
+   
+   // ... can implement anything you'd like here.
 }
 ```
 ### Result @ `.djanta-rc.json`
 
 ```json
 {
-  "package": "my-real-npm-package-name",
+  "package": "my-real-npm-package-name", //mandatory extracted from your package.json
   "name": "MyCustomizedBundleName",
   "homepage": "www.djantajs.io",
   "version": "1.0.1",
@@ -162,7 +167,7 @@ module.exports = class MyCustomizedBundle {
 ### Overview
 
 The following annotation called `plugin` represent one of the most important, powerful and the most used annotation we've ever provided. 
-Therefore, this'S basically the annotion you'll be uising to describe each service provided by your `djantajs` contribution.
+Therefore, this's basically the annotion you'll be uising to describe each service provided by your `djantajs` contribution.
 
 ```js
 @plugin
@@ -234,10 +239,10 @@ An array of tag list to shortly describe the service purpose.
 ### Usage Examples
 
 ```js
-const {Plugin} = require ('djantajs-runtime');
-
+const { Plugin } = require ('djantajs-runtime');
 /**
  * So far, the plugin annotation might take place you class definition level as follow:
+ * 
  * @plugin(name="CarRentalService", version="1.0.1", engine=[">=7.6.0"],
  *  imports=["MyTiersBillingService", "MyS3BillStorageService@>=0.2.8"],
  *  tags=["finance", "trading", "accounting", "payment"],
@@ -250,12 +255,12 @@ const {Plugin} = require ('djantajs-runtime');
  * )
  */
 module.exports = class CarRentalService extends Plugin {
-    
   /**
    * Qualified default explicit constructor declaration
+   * @param {*} options construction plugin configurable option
    */
-  constructor () {
-    super ();
+  constructor (options = {}) {
+    super (options);
   }
   
   /**
@@ -263,7 +268,7 @@ module.exports = class CarRentalService extends Plugin {
    */
   init (options = {}) {
     super.init(options);
-    //Here i can do anything i want to initialize my plugin
+    // Here i can do anything i want to initialize my plugin
   }
 };
 ```
@@ -310,7 +315,7 @@ module.exports = class CarRentalService extends Plugin {
       "description": "This's how you can provide your service to enrich the ecosytem",
       "class": "services/cars-rental-service.js"
     }
-  ],
+  ]
 }
 ```
 
@@ -354,16 +359,24 @@ A litteral string value to describle the given porte usage and goal. This'll be 
 ### Usage Examples
 
 ```js
-const {Plugin} = require ('djantajs-runtime');
-
+let { Plugin } = require ('djantajs-runtime');
 /**
  * So far, the plugin annotation might take place you class definition level as follow:
  * @plugin(name="MyPorteDemoService", version="1.0.1", engine=[">=7.6.0"],
- *  portes=[@porte(name='my-feature-porte', enabled=true, description='Anyone can now contribute to my service through this porte')
+ *  portes=[@porte(name='my-feature-porte', enabled=true, 
+ *      description='Anyone can now contribute to my service through this porte')
  *  ]
  * )
  */
-module.exports = class MyPorteDemoServiceClass extends Plugin {}
+module.exports = class MyPorteDemoServiceClass extends Plugin {
+   /**
+    * Qualified default class constructor
+    * @param {*} options construction plugin configurable option
+    */
+   constructor(options = {}){
+     super(options);
+   }
+}
 ```
 
 ### Result @ `.djanta-rc.json`
@@ -387,7 +400,7 @@ module.exports = class MyPorteDemoServiceClass extends Plugin {}
         }
       ]
     }
-  ],
+  ]
 }
 ```
 
@@ -431,7 +444,7 @@ Any data type you'd like to map with the given name.
 ### Usage Examples
 
 ```js
-const {Plugin} = require ('djantajs-runtime');
+const { Plugin } = require ('djantajs-runtime');
 
 /**
  * So far, the plugin annotation might take place you class definition level as follow:
@@ -439,7 +452,15 @@ const {Plugin} = require ('djantajs-runtime');
  *  settings=[@setting(name='my-setting-identifier', value=#{any value goes here}, description='Each setting description here!')]
  * )
  */
-module.exports = class MySettingDemoServiceClass extends Plugin {}
+module.exports = class MySettingDemoServiceClass extends Plugin {
+   /**
+    * Qualified default class constructor
+    * @param {*} options construction plugin configurable option
+    */
+   constructor(options = {}){
+     super(options);
+   }
+}
 ```
 
 ### Result @ `.djanta-rc.json`
@@ -463,7 +484,7 @@ module.exports = class MySettingDemoServiceClass extends Plugin {}
         }
       ]
     }
-  ],
+  ]
 }
 ```
 

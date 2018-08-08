@@ -20,7 +20,7 @@ module.exports = class MyUserController {
    * @verb(name='GET', url=[@url(value='/:username')], label='Get user by name',
    *  description='Get any user resource that match with the given name')
    *
-   * @hook(interceptor='cache', enabled='true',
+   * @hook(interceptor='cache', enabled=true,
    *  options={key:'username', cacheName:'RedisKeyMapCache'},
    *  descriptor='Intercept the request and inject data from the cache if available')
    */

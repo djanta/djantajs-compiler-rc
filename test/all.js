@@ -1,18 +1,19 @@
 'use strict';
 
-const should = require('should');
+let should = require('should');
+let FS = require ('fs');
+let Path = require ('path');
+let _ = require ('lodash');
 
-const FS = require ('fs');
-const Path = require ('path');
-const _ = require ('lodash');
+let { Compiler } = require('djantajs-compiler-core');
 
-const { Compiler } = require('djantajs-compiler-core');
-
-const RC = require('../lib/rc');
-const _ROOT = Path.resolve(__dirname, '..');
+let RC = require('../lib/rc');
+let _ROOT = Path.resolve(__dirname, '..');
 
 describe('Bundle RC generator global descriptor', () => {
-  let core  = undefined, handlers = [], annotation = Path.resolve(__dirname, '..', 'lib', 'runtime');
+  let core  = undefined;
+  let handlers = [];
+  let annotation = Path.resolve(__dirname, '..', 'lib', 'runtime');
 
   beforeEach(() => {
     core = new Compiler(_ROOT);
@@ -32,7 +33,7 @@ describe('Bundle RC generator global descriptor', () => {
     it('should bundle annotated well rendered', () => {
       let options = {
         project: {
-          src: Path.resolve(__dirname, '../examples/package')
+          src: Path.resolve(__dirname, './examples/package')
         },
         handlers: handlers,
         annotations: annotation
@@ -45,7 +46,7 @@ describe('Bundle RC generator global descriptor', () => {
 
   describe('Plugin annotated parser', () => {
     it('should plugin annotated well rendered', () => {
-      let ws = Path.resolve(__dirname, '../examples/plugins'),
+      let ws = Path.resolve(__dirname, './examples/plugins'),
         options = {
           project: {
             src: ws
@@ -80,8 +81,8 @@ describe('Bundle RC generator global descriptor', () => {
 
   describe('Component annotated with resource controller', () => {
     it('should plugin annotated well rendered from class resource controler', () => {
-      let base = Path.resolve(__dirname, '../examples/controller'),
-        options = {
+      let base = Path.resolve(__dirname, './examples/controller');
+      let options = {
           project: {
             src: base
           },
@@ -99,14 +100,14 @@ describe('Bundle RC generator global descriptor', () => {
           should(config.class).be.eql('index.js');
         })
         .catch((ex) => {
-          //Should(Compiler).throws(ex);
+          // Should(Compiler).throws(ex);
         });
     });
   });
 
   describe('Component annotated with interceptor', () => {
     it('should plugin annotated well rendered from class interceptor', () => {
-      let base = Path.resolve(__dirname, '../examples/interceptor'),
+      let base = Path.resolve(__dirname, './examples/interceptor'),
         options = {
           project: {
             src: base
@@ -133,7 +134,7 @@ describe('Bundle RC generator global descriptor', () => {
 
   describe ('Plugin annotated parser with contribution', () => {
     it('should plugin annotated well rendered', () => {
-      let ws = Path.resolve(__dirname, '../examples/contribution'),
+      let ws = Path.resolve(__dirname, './examples/contribution'),
         options = {
           project: {
             src: ws
@@ -160,7 +161,7 @@ describe('Bundle RC generator global descriptor', () => {
 
   describe ('Parse all provided project', () => {
     it('should plugin annotated well rendered', () => {
-      let ws = Path.resolve(__dirname, '../examples'),
+      let ws = Path.resolve(__dirname, './examples'),
         options = {
           project: {
             src: ws
@@ -180,7 +181,7 @@ describe('Bundle RC generator global descriptor', () => {
           should(config.class).be.eql('index.js');
         })
         .catch((ex) => {
-          //Should(Compiler).throws(ex);
+          // Should(Compiler).throws(ex);
         });
     });
   });

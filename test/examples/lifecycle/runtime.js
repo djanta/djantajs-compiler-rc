@@ -7,6 +7,7 @@ module.exports = class RuntimeLifecycle {
 
   /**
    * Qualified default class constructor
+   * @constructor
    */
   constructor() {}
 
@@ -16,7 +17,9 @@ module.exports = class RuntimeLifecycle {
    *  description='Handle the core server after stopped event'
    * )
    */
-  handleBeforeServerStopped(event = undefined){}
+  handleBeforeServerStopped(event = undefined){
+    // NYI to avoid empty method rule violation
+  }
 
   /**
    * @runtime(event=['beforeServerStarted'],
@@ -24,5 +27,7 @@ module.exports = class RuntimeLifecycle {
    *  description='Handle the core server before start event'
    * )
    */
-  handleBeforeServerStarted(event = undefined){}
+  handleBeforeServerStarted(event = undefined){
+    // NYI to avoid empty method rule violation
+  }
 };
