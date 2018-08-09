@@ -1,7 +1,5 @@
 # djantajs-compiler-rc
 
-[![Build Status](https://travis-ci.org/djantaio/djantajs-compiler-rc.svg)](https://travis-ci.org/djantaio/djantajs-compiler-rc)
-
 [![npm](https://img.shields.io/npm/v/djantajs-compiler-rc.svg?style=flat)](https://github.com/djanta/djantajs-compiler-rc)
 [![npm downloads](https://img.shields.io/npm/dw/djantajs-compiler-rc.svg?style=flat)](https://www.npmjs.com/package/djantajs-compiler-rc)
 [![Build Status](https://travis-ci.org/djanta/djantajs-compiler-rc.svg?branch=master)](https://travis-ci.org/djanta/djantajs-compiler-rc)

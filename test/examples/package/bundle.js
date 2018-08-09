@@ -3,10 +3,9 @@
 /**
  * Simple bundle level annotation class
  * @type {MySampleBundle}
- * @bundle('my-example-bundle')
+ * @bundle(name='my-example-bundle', ns='io.djantajs.bundle')
  */
 module.exports = class MySampleBundle {
-
   /**
    * Qualified default class construcot
    */
