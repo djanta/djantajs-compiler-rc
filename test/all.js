@@ -33,7 +33,7 @@ describe('Bundle RC generator global descriptor', () => {
     it('should bundle annotated well rendered', () => {
       let options = {
         project: {
-          src: Path.resolve(__dirname, './examples/package')
+          src: Path.resolve(__dirname, './examples/bundle')
         },
         handlers: handlers,
         annotations: annotation
@@ -46,7 +46,7 @@ describe('Bundle RC generator global descriptor', () => {
 
   describe('Plugin annotated parser', () => {
     it('should plugin annotated well rendered', () => {
-      let ws = Path.resolve(__dirname, './examples/plugins'),
+      let ws = Path.resolve(__dirname, './examples/plugin'),
         options = {
           project: {
             src: ws

@@ -21,9 +21,9 @@ module.exports = class MySamplePorte {
   /**
    * @contribution(
    *  name="MyQuotationPorte",
-   *  portes=[@extension(plugin="my-car-rentalservice", name="quote",
-   *  description="This's my car quotation rental contribution",
-   *    version="1.0.0")], options={any: "This's my any option"}
+   *  portes=[@extension(plugin="my-car-rentalservice@1.0.5", name="quote",
+   *  description="This's my car quotation rental contribution")],
+   *  options={any: "This's my any option"}
    * )
    */
   carQuotationContribution() {}
