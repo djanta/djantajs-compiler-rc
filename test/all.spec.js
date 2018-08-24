@@ -1,23 +1,23 @@
 'use strict';
 
 let should = require('should');
-let FS = require ('fs');
-let Path = require ('path');
+let fs = require ('fs');
+let path = require ('path');
 let _ = require ('lodash');
 
 let { Compiler } = require('djantajs-compiler-core');
 
-let RC = require('../lib/rc');
-let _ROOT = Path.resolve(__dirname, '..');
+let RuntimeCompiler = require('../lib/rcompiler');
+let _ROOT = path.resolve(__dirname, '..');
 
 describe('Bundle RC generator global descriptor', () => {
   let core  = undefined;
   let handlers = [];
-  let annotation = Path.resolve(__dirname, '..', 'lib', 'runtime');
+  let annotation = path.resolve(__dirname, '..', 'lib', 'runtime');
 
   beforeEach(() => {
     core = new Compiler(_ROOT);
-    handlers.push(new RC(core))
+    handlers.push(new RuntimeCompiler(core))
   });
 
   afterEach(() => {
@@ -33,7 +33,7 @@ describe('Bundle RC generator global descriptor', () => {
     it('should bundle annotated well rendered', () => {
       let options = {
         project: {
-          src: Path.resolve(__dirname, './examples/bundle')
+          src: path.resolve(__dirname, './examples/bundle')
         },
         handlers: handlers,
         annotations: annotation
@@ -46,7 +46,7 @@ describe('Bundle RC generator global descriptor', () => {
 
   describe('Plugin annotated parser', () => {
     it('should plugin annotated well rendered', () => {
-      let ws = Path.resolve(__dirname, './examples/plugin'),
+      let ws = path.resolve(__dirname, './examples/plugin'),
         options = {
           project: {
             src: ws
@@ -61,9 +61,9 @@ describe('Bundle RC generator global descriptor', () => {
         }
       })
         .then(() => {
-          let config = JSON.parse(FS.readFileSync(Path.join(ws, '.djanta-rc.json'), 'utf8'));
+          let config = JSON.parse(fs.readFileSync(path.join(ws, '.djanta-rc.json'), 'utf8'));
 
-          //expect(config.name).to.be.a('my-annotations-example-plugin');
+          // expect(config.name).to.be.a('my-annotations-example-plugin');
 
           should(config.class).be.eql('index.js');
           should(config.name).be.eql('my-annotations-example-plugin');
@@ -81,7 +81,7 @@ describe('Bundle RC generator global descriptor', () => {
 
   describe('Component annotated with resource controller', () => {
     it('should plugin annotated well rendered from class resource controler', () => {
-      let base = Path.resolve(__dirname, './examples/controller');
+      let base = path.resolve(__dirname, './examples/controller');
       let options = {
           project: {
             src: base
@@ -96,7 +96,7 @@ describe('Bundle RC generator global descriptor', () => {
         }
       })
         .then(() => {
-          let config = JSON.parse(FS.readFileSync(Path.join(base, '.djanta-rc.json'), 'utf8'));
+          let config = JSON.parse(fs.readFileSync(path.join(base, '.djanta-rc.json'), 'utf8'));
           should(config.class).be.eql('index.js');
         })
         .catch((ex) => {
@@ -107,7 +107,7 @@ describe('Bundle RC generator global descriptor', () => {
 
   describe('Component annotated with interceptor', () => {
     it('should plugin annotated well rendered from class interceptor', () => {
-      let base = Path.resolve(__dirname, './examples/interceptor'),
+      let base = path.resolve(__dirname, './examples/interceptor'),
         options = {
           project: {
             src: base
@@ -122,7 +122,7 @@ describe('Bundle RC generator global descriptor', () => {
         }
       })
         .then(() => {
-          let config = JSON.parse(FS.readFileSync(Path.join(base, '.djanta-rc.json'), 'utf8'));
+          let config = JSON.parse(fs.readFileSync(path.join(base, '.djanta-rc.json'), 'utf8'));
 
           should(config.class).be.eql('index.js');
         })
@@ -134,7 +134,7 @@ describe('Bundle RC generator global descriptor', () => {
 
   describe ('Plugin annotated parser with contribution', () => {
     it('should plugin annotated well rendered', () => {
-      let ws = Path.resolve(__dirname, './examples/contribution'),
+      let ws = path.resolve(__dirname, './examples/contribution'),
         options = {
           project: {
             src: ws
@@ -149,7 +149,7 @@ describe('Bundle RC generator global descriptor', () => {
         }
       })
         .then(() => {
-          let config = JSON.parse(FS.readFileSync(Path.join(ws, '.djanta-rc.json'), 'utf8'));
+          let config = JSON.parse(fs.readFileSync(path.join(ws, '.djanta-rc.json'), 'utf8'));
 
           should(config.class).be.eql('index.js');
         })
@@ -161,7 +161,7 @@ describe('Bundle RC generator global descriptor', () => {
 
   describe ('Parse all provided project', () => {
     it('should plugin annotated well rendered', () => {
-      let ws = Path.resolve(__dirname, './examples'),
+      let ws = path.resolve(__dirname, './examples'),
         options = {
           project: {
             src: ws
@@ -176,7 +176,7 @@ describe('Bundle RC generator global descriptor', () => {
         }
       })
         .then(() => {
-          let config = JSON.parse(FS.readFileSync(Path.join(ws, '.djanta-rc.json'), 'utf8'));
+          let config = JSON.parse(fs.readFileSync(path.join(ws, '.djanta-rc.json'), 'utf8'));
 
           should(config.class).be.eql('index.js');
         })

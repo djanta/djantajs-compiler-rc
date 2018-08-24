@@ -5,9 +5,9 @@
  *
  * @controller(name='people', root='/api/v1/peoples', model='People')
  *
- * @type {MyController}
+ * @type {PeopleController}
  */
-module.exports = class MyController {
+module.exports = class PeopleController {
   /**
    * Qualified default class constructor.
    * @constructor
@@ -20,18 +20,17 @@ module.exports = class MyController {
    * @verb(name='GET', url='/', label='Get all people',
    *   description='This the endpoint where to retrieve the poeple resources ')
    */
-  apiGetVerbHandler(req, res, chain, params) {}
+  apiGetVerbHandler (req, res, chain, params) {}
 
   /**
    * Handle the default http verb.
    *
-    @verb(name='GET',
-      url=@url(value='/:people', params=[@param(name='people', type='string', required='true')]),
+    @verb(name='GET', url=[@url(value='/:people')],
       label='Get the people with the given username',
       description='This the endpoint where to retrieve the people with the user unique identifier'
    )
    */
-  apiGetPoepleWithOid(req, res, chain, params) {}
+  apiGetPoepleWithOid (req, res, chain, params) {}
 
   /**
    * Handle the default http verb.
@@ -42,19 +41,19 @@ module.exports = class MyController {
       attributes=[@attribute(name='username', defaultValue='alphax',
       description='This property will now reauired from the user post')])
    */
-  apiPostWithAttribute(req, res, chain, params) {}
+  apiPostWithAttribute (req, res, chain, params) {}
 
   /**
    * Handle the default http verb.
    *
-    @verb(name='POST',
-      url='/', label='Create a new poeple with all the required attribute',
-      description='This the endpoint where to create the poeple resources through',
+    @verb(name='POST', url='/',
+      label='Create a new poeple with all the required attribute',
+      description='This the endpoint where to create the poeple resources',
       attributes=[@attribute(name='username', defaultValue='alphax',
       description='This property will now reauired from the user post')]
    )
    */
-  apiPostWithManyAttributes(req, res, chain, params) {}
+  apiPostWithManyAttributes (req, res, chain, params) {}
 
   /**
    * Handle the default http verb.
@@ -64,7 +63,7 @@ module.exports = class MyController {
       description='This verb will separately provide the request configuration')
 
     @request(name='MyRequestWithJson', type='application/json',
-      description='MyRequest with my mime type')
+      description='Request mime type')
    */
   apiPostWithTypedRequest(req, res, chain, params) {}
 
@@ -75,7 +74,7 @@ module.exports = class MyController {
       label='Create a new poeple with response 200',
       description='This verb will separately provide the request configuration')
 
-    @response(code='200', type='application/json',
+    @response(code=200, type='application/json',
       description='MyRequest with my mime type')
    */
   apiPostWithTypedResponse(req, res, chain, params) {}
@@ -87,10 +86,8 @@ module.exports = class MyController {
       label='Create a new poeple with response 200 and 201',
       description='This verb will separately provide the request configuration')
 
-    @response(code='200', type='application/json',
-      description='MyResponse with code 200 expected')
-    @response(code='201', type='application/json',
-      description='MyResponse with code 201 expected')
+    @response(code=200, type='application/json', description='200 expected')
+    @response(code=201, type='application/json', description='201 expected')
    */
   apiPostWithTypedManyResponses(req, res, chain, params) {}
 
@@ -101,10 +98,9 @@ module.exports = class MyController {
       label='Create a new poeple with response 200 and 201',
       description='This verb will separately provide the request configuration')
 
-    @response(code='200', type='application/json',
+    @response(code=200, type='application/json',
       description='MyResponse with code 200 expected',
-      headers=[@header(name='AuthorizationToken',
-      value='alfdkfafadsopfiqwfldkafdsjfaklfdafdfeowqpro')],
+      headers=[@header(name='AuthorizationToken', value='alfdkfafadkklkerwe')],
       showJsonSchema='true', showJsonSample='true'
     )
    */

@@ -4,7 +4,6 @@
  * @type {RuntimeLifecycle}
  */
 module.exports = class RuntimeLifecycle {
-
   /**
    * Qualified default class constructor
    * @constructor

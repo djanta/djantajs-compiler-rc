@@ -3,14 +3,14 @@
 /**
  * My Simple resource controller class level annotation
  *
- * @controller(name='users', root='/api/v1/users', model='User')
+ * @controller(name='user', root='/api/v1/users', model='User')
  *
- * @type {MyUserController}
+ * @type {UserController}
  */
-module.exports = class MyUserController {
-
+module.exports = class UserController {
   /**
    * Qualified default class constructor
+   * @constructor
    */
   constructor() {}
 

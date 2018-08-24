@@ -3,7 +3,7 @@
 /**
  * Simple bundle level annotation class
  * @type {MySampleBundle}
- * @bundle(name='my-example-bundle', ns='io.djantajs.bundle')
+ * @bundle(name='Testing', ns='io.djantajs.testing')
  */
 module.exports = class MySampleBundle {
   /**
