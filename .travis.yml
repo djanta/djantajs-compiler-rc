@@ -1,22 +1,52 @@
+sudo: required
 language: node_js
+dist: trusty
 node_js:
-  - 6
-  - 7
-env:
-  matrix:
-  global:
-    secure: miSgclcdpfB9XiRRcsGKehe1dNcDGWP9tLswBRzsa9GNhb8HHNgZ+5vzEi8pn65Q2PgRq2PAdzdddnT+KAwdviRJ6z5EtRlwY7/1jCSYLxiGaqQWy8MPlajTfFlimkro8deYJNlc0ZketnzxFQKJVJ8XnjvvJMBE8aw54sJ0YbnLfmOToCz19/J0FxkttpD9JOv8DpYXRheJzj78xwl5KZyt0CBwvekKv3EfjQciWi75R7h+M2KAQiRgZx7yh3sp1IkDcbtvv1HdvpMyl133mzqVCET43nEhgnGgrQrNQI4/fPeCQbOSkxw5LZvvsrN1PagE720VIWsNk5yqKracMGkg6kTW4oeAXTwTPYcdFem1v2/CWoCv/hyfYWrYWBReVsEqv+JSI3PkletPxfkPVPc0jyS3D5x0d8LcQHjrKGh7MceYy8Mr1Hxgg18uGfGrWeGLibW02jBUTaIUv14RtXkKUFT0h4V+kmoK7Ltvn0z4S8KOblrSI38HfJhvjRPhvuHuG8P5d3N7uICWOB4JwXtVN3izXWVEYq6OUiJp0zlU/xh6c+cmXksmev/GjGr7Mm8kVHyAkT4HxqZJ/465JcPBUl7dP4KwGFWOykzRdFiyT9uC/KM6uvjE6Zd59vMvrDfXdVDIk4HAMqXi0N3szAMBN+g7WDHL7NUAI/ojNns=
-notifications:
-  email: true
-after_script:
-  #- cat ./coverage/lcov.info | coveralls
+  - '8'
+branches:
+  except:
+    - /^pr\\..*/"=
+    - "/^features\\\\..*/"
 before_install:
-  #- npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+  - git clone https://github.com/djanta/travis-npm-deploy.git ~/travis-npm-deploy
+  - chmod +x ~/travis-npm-deploy/deploy.sh && chmod +x ~/travis-npm-deploy/npm/*.sh
+  - bash ~/travis-npm-deploy/deploy.sh --git-config
+install:
+  - bash ~/travis-npm-deploy/deploy.sh --install
+  - npm i --verbose
+  - 'echo "repo_token: $COVERALLS_REPO_TOKEN" > "./.coveralls.yml"'
+  - npm run snyk:login -- $SNYK_TOKEN
+script:
+  - npm test
+after_script:
+  - echo "Running after script"
+after_success:
+  - npm run snyk:monitor
+  - npm run coverage
+before_deploy:
+  - bash ~/travis-npm-deploy/deploy.sh login --user=$NPM_USER --password=$NPM_PWD --email=$NPM_EMAIL #--scope=$NPM_SCOPE
 deploy:
-  provider: npm
-  email: npmjs@djanta.io
-  on:
-    tags: true
-    repo: djantaio/djantajs-compiler-rc
-    all_branches: false
-    node: 7
+  - provider: script
+    skip_cleanup: true
+    email: "$NPM_EMAIL"
+    script: "~/travis-npm-deploy/deploy.sh"
+    on:
+      tags: true
+      repo: djanta/djantajs-compiler-rc
+after_deploy:
+  - bash ~/travis-npm-deploy/deploy.sh logout
+notifications:
+  email: false
+  slack:
+    rooms:
+      - "$SLACK_ROOM_URL"
+    on_success: always
+    template:
+      - Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository}@%{branch}
+        by %{author} %{result} in %{duration}
+  webhooks:
+    urls:
+      - "$WEBHOOK_GITTER"
+    on_success: change
+    on_failure: always
+    on_start: never
