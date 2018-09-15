@@ -1,7 +1,7 @@
 # djantajs-compiler-rc
 
-[![npm](https://img.shields.io/npm/v/djantajs-compiler-rc.svg?style=flat)](https://github.com/djanta/djantajs-compiler-rc)
-[![npm downloads](https://img.shields.io/npm/dw/djantajs-compiler-rc.svg?style=flat)](https://www.npmjs.com/package/djantajs-compiler-rc)
+[![npm](https://img.shields.io/npm/v/@djanta/djantajs-compiler-rc.svg?style=flat)](https://www.npmjs.com/package/@djanta/djantajs-compiler-rc)
+[![npm downloads](https://img.shields.io/npm/dw/@djanta/djantajs-compiler-rc.svg?style=flat)](https://www.npmjs.com/package/@djanta/djantajs-compiler-rc)
 [![Build Status](https://travis-ci.org/djanta/djantajs-compiler-rc.svg?branch=master)](https://travis-ci.org/djanta/djantajs-compiler-rc)
 [![Coverage Status](https://coveralls.io/repos/github/djanta/djantajs-compiler-rc/badge.svg?branch=master)](https://coveralls.io/github/djanta/djantajs-compiler-rc?branch=master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/312ea725f33a184b0464/maintainability)](https://codeclimate.com/github/djanta/djantajs-compiler-rc/maintainability)
@@ -10,25 +10,9 @@
 
 > Uses djantajs runtime compiler that extract all known annotation from your code and then generate the .djanta-rc.json configuration.
 
-## Table of contents
-
-* [Dependencies](#dependencies)
-* [Prerequisites](#Prerequisites)
-* [Services](#services)
-  - [Http Service](#webappservice)
-    - [Portes](#portes)
-* [Related projects](#related-projects)
-* [Why use runtime annotation?](#why-use-djantajs-compiler-rc-)
-* [Running tests](#running-tests)
-* [Contributing](#contributing)
-* [Troubleshooting](#troubleshooting)
-* [Major changes](#major-changes)
-* [Author](#author)
-* [License](#license)
-
 ## Why use djantajs-compiler-rc?
 
-It's magical and make the server to boot less than a couple of seconds instead or minutes. Therefore, by using the framework provided annotation, this module will be able to parse them all generate our project `.djanta-rc.json` at build lifecycle. If that's not enough for you, it's also the most powerful and easy-to-use. And it's magical.
+`djantajs-compiler-rc` is the tool magical provided to make **`djantajs`** server to boot less than a couple of seconds instead of minutes. By using this annotation framework with your **`djantajs`** bundle, your project will be parsed at build lifecycle and then generate **`.djanta-rc.json`**. If that's not enough for you, it's also the most powerful and easy-to-use.
 
 ## Getting Started
 
@@ -41,7 +25,7 @@ If you haven't used [npm](https://npmjs.com/) before, be sure to check out the [
 Install with [npm](https://www.npmjs.com/):
 
 ```shell
-npm i djantajs-compiler-rc --save-dev
+npm i @djanta/djantajs-compiler-rc --save[-S]
 ```
 
 Once you install the compiler, you might also want the `.djanta-rc.json` to be automatically generatated. Therefore, we've provided the `Grunt` task which you can install as follow:
@@ -59,7 +43,7 @@ The `Grunt` task configuration is available at: [](https://github.com/djanta/gru
 Once this module has been sucessfully installed and well configured, it may be enabled and ready to be used inside your project with this line of JavaScript:
 
 ```js
-let { Handler, ModuleBase } = require('djantajs-compiler-rc');
+let { Handler, ModuleBase } = require('@djanta/djantajs-compiler-rc');
 ```
 
 ## TL;TR
@@ -237,7 +221,7 @@ An array of tag list to shortly describe the service purpose.
 ### Usage Examples
 
 ```js
-const { Plugin } = require ('djantajs-runtime');
+const { Plugin } = require ('@djanta/djantajs-runtime');
 /**
  * So far, the plugin annotation might take place you class definition level as follow:
  * 
@@ -357,7 +341,7 @@ A litteral string value to describle the given porte usage and goal. This'll be 
 ### Usage Examples
 
 ```js
-let { Plugin } = require ('djantajs-runtime');
+let { Plugin } = require ('@djanta/djantajs-runtime');
 /**
  * So far, the plugin annotation might take place you class definition level as follow:
  * @plugin(name="MyPorteDemoService", version="1.0.1", engine=[">=7.6.0"],
@@ -442,7 +426,7 @@ Any data type you'd like to map with the given name.
 ### Usage Examples
 
 ```js
-const { Plugin } = require ('djantajs-runtime');
+const { Plugin } = require ('@djanta/djantajs-runtime');
 
 /**
  * So far, the plugin annotation might take place you class definition level as follow:
@@ -521,10 +505,10 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 ## Release History
 _(Nothing yet)_
 
-**Koffi ASSOUTOVI**
+**Stanislas Koffi ASSOUTOVI**
 
-* [github/djantaio](https://github.com/djantaio)
-* [twitter/djantaio](http://twitter.com/djantaio)
+* [github/djanta](https://github.com/djantaio)
+* [twitter/djantajs](http://twitter.com/djantaio)
 
 ## Roadmap
 

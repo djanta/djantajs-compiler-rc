@@ -5,7 +5,7 @@ let fs = require ('fs');
 let path = require ('path');
 let _ = require ('lodash');
 
-let { Compiler } = require('djantajs-compiler-core');
+let { Compiler } = require('@djanta/djantajs-compiler-core');
 
 let RuntimeCompiler = require('../lib/rcompiler');
 let _ROOT = path.resolve(__dirname, '..');
