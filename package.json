@@ -36,6 +36,10 @@
     "node": ">=6.0.0"
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "snyk": true,
   "scripts": {
     "test": "./node_modules/.bin/_mocha --recursive -- test/**/**/*.spec.js",
     "coverage": "npm run coverage:coveralls && npm run coverage:codeclimate",
@@ -66,6 +70,5 @@
     "should": "^13.2.3",
     "coveralls": "^3.0.2",
     "codeclimate-test-reporter": "^0.5.0"
-  },
-  "snyk": true
+  }
 }
