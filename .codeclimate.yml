@@ -1,23 +1,15 @@
----
-engines:
+version: "2"
+plugins:
   duplication:
     enabled: true
     config:
       languages:
-      - javascript
+        - javascript
   eslint:
-    enabled: false
+    enabled: true
   fixme:
     enabled: true
-ratings:
-  paths:
-  - "**.inc"
-  - "**.js"
-  - "**.jsx"
-  - "**.module"
-  - "**.php"
-  - "**.py"
-  - "**.rb"
-exclude_paths:
+checks:
+exclude_patterns:
   - test/**/*
-  - example/**/*
+  - examples/**/*

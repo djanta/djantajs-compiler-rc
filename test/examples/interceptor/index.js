@@ -14,7 +14,9 @@ module.exports = class MyInterceptorTesting {
    * Qualified default class constructor
    * @constructor
    */
-  constructor() {}
+  constructor() {
+    // Not yet implemented
+  }
 
   /**
    * Pre-handle the original request.
