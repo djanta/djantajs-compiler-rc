@@ -60,7 +60,6 @@
     "parse-comments": "^0.4.3",
     "path-to-regexp": "^2.4.0",
     "semver": "^5.5.1",
-    "string": "^3.3.3",
     "url-pattern": "^1.0.3",
     "@djanta/djantajs-compiler-core": "^1.0.7",
     "snyk": "^1.95.3"
