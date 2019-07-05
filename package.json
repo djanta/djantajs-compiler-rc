@@ -50,7 +50,8 @@
     "snyk:monitor": "./node_modules/.bin/snyk monitor --file=./package.json",
     "snyk:login": "./node_modules/.bin/snyk auth",
     "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "prepare": "npm run snyk-protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "bluebird": "^3.5.2",
@@ -62,7 +63,7 @@
     "semver": "^5.5.1",
     "url-pattern": "^1.0.3",
     "@djanta/djantajs-compiler-core": "^1.0.7",
-    "snyk": "^1.95.3"
+    "snyk": "^1.192.3"
   },
   "devDependencies": {
     "mocha": "^5.2.0",
