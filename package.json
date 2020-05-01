@@ -62,7 +62,7 @@
     "semver": "^5.5.1",
     "url-pattern": "^1.0.3",
     "@djanta/djantajs-compiler-core": "^1.0.7",
-    "snyk": "^1.95.3"
+    "snyk": "^1.316.2"
   },
   "devDependencies": {
     "mocha": "^5.2.0",
